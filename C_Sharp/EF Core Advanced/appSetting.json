@@ -1,0 +1,11 @@
+﻿{
+    "Personal Info": {
+        "Name": "mostafa",
+        "Age": 25,
+        "Address": "Nawa"
+    },
+    "Connection String": {
+        "default": "Data Source = MOSTAFAMAGED\\SQLEXPRESS;Initial Catalog =EF_Advanced;Integrated Security=True;TrustServerCertificate=True"
+    }
+
+}
