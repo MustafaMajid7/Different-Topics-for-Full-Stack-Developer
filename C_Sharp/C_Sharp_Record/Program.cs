@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
 
 namespace C_Sharp_Record
 {
@@ -6,59 +7,71 @@ namespace C_Sharp_Record
 	{
 		static void Main(string[] args)
 		{
-			// class without any override functions
+			#region record
+			//// class without any override functions
 
-			Point point1 = new Point(10, 5);
-			Point point2 = new Point(10, 5);
-			Console.WriteLine(point1 == point2);
-			Console.WriteLine(point1.Equals(point2));
+			//Point point1 = new Point(10, 5);
+			//Point point2 = new Point(10, 5);
+			//Console.WriteLine(point1 == point2);
+			//Console.WriteLine(point1.Equals(point2));
 
-			// class with override Equals object function 
+			//// class with override Equals object function 
 
-			Point_Equals point3 = new Point_Equals(10, 5);
-			Point_Equals point4 = new Point_Equals(10, 5);
-			Console.WriteLine(point3 == point4);
-			Console.WriteLine(point3.Equals(point4));
-			Console.WriteLine(point3.GetHashCode());
-			Console.WriteLine(point4.GetHashCode());
+			//Point_Equals point3 = new Point_Equals(10, 5);
+			//Point_Equals point4 = new Point_Equals(10, 5);
+			//Console.WriteLine(point3 == point4);
+			//Console.WriteLine(point3.Equals(point4));
+			//Console.WriteLine(point3.GetHashCode());
+			//Console.WriteLine(point4.GetHashCode());
 
-			// class with override == operator
+			//// class with override == operator
 
-			Point_equal_operator point5 = new Point_equal_operator(10, 5);
-			Point_equal_operator point6 = new Point_equal_operator(10, 6);
-			Console.WriteLine(point5 != point6);
-			Console.WriteLine(point5.Equals(point6));
+			//Point_equal_operator point5 = new Point_equal_operator(10, 5);
+			//Point_equal_operator point6 = new Point_equal_operator(10, 6);
+			//Console.WriteLine(point5 != point6);
+			//Console.WriteLine(point5.Equals(point6));
 
-            // class with override == operator
+			//// class with override == operator
 
-            Console.WriteLine("********************************************");
+			//Console.WriteLine("********************************************");
 
-            PointEquatable point7 = new PointEquatable(10, 5);
-			PointEquatable point8 = new PointEquatable(10, 5);
-			Console.WriteLine(point7.Equals(point8));
+			//PointEquatable point7 = new PointEquatable(10, 5);
+			//PointEquatable point8 = new PointEquatable(10, 5);
+			//Console.WriteLine(point7.Equals(point8));
 
-			Console.WriteLine("********************************************");
+			//Console.WriteLine("********************************************");
 
-			SPoint point9 = new SPoint(10, 5);
-			SPoint point10 = new SPoint(10, 5);
-			Console.WriteLine(point9.Equals(point10));
+			//SPoint point9 = new SPoint(10, 5);
+			//SPoint point10 = new SPoint(10, 5);
+			//Console.WriteLine(point9.Equals(point10));
 
-			Console.WriteLine("********************************************");
+			//Console.WriteLine("********************************************");
 
-			RPoint rPoint1 = new RPoint
+			//RPoint rPoint1 = new RPoint
+			//{
+			//	x = 10,
+			//	y = 10,
+			//};
+			//rPoint1.y = 15;
+			//RPoint rPoint2 = new RPoint(10, 5);
+			//RPoint rPoint3 = rPoint2 with { x = 30 };
+
+			//Console.WriteLine(rPoint1);
+			//Console.WriteLine(rPoint2);
+			//Console.WriteLine(rPoint3); 
+			#endregion
+			var options = new JsonSerializerOptions
 			{
-				x = 10,
-				y = 10,
+				PropertyNameCaseInsensitive = true,
+				ReadCommentHandling= JsonCommentHandling.Skip
 			};
-			rPoint1.y = 15;
-			RPoint rPoint2 = new RPoint(10, 5);
-			RPoint rPoint3 = rPoint2 with {x=30};
-
-			Console.WriteLine(rPoint1);
-            Console.WriteLine(rPoint2);
-            Console.WriteLine(rPoint3);
-
-		}
+			var stream = File.OpenRead("Attendance.json");
+			var list = JsonSerializer.Deserialize<List<Attendance>>(stream,options);
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+        }
 	}
 	class Point
 	{

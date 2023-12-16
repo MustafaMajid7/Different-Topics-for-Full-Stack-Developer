@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +12,11 @@ namespace EF_Core_Advanced
 {
 	public class dbContext : DbContext
 	{
-		private readonly IConfiguration config;
-
-		public dbContext(IConfiguration config) 
+        public IConfiguration config { get; set; }
+        public dbContext() 
 		{
-			this.config = config;
 			var builder = new ConfigurationBuilder().AddJsonFile("appSetting.json");
-			this.config = builder.Build();
+			config = builder.Build();
 		}
 
 		public virtual DbSet<Course> Courses { get; set; }
