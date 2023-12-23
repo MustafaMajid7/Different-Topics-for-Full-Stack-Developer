@@ -1,8 +1,23 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Text.Json;
 
 namespace C_Sharp_Record
 {
+	public record class College(
+	string Name,
+	int NoOfStudents,
+	bool IsPublic,
+	List<Teacher>? Teachers = null);
+	public record class Teacher(
+		string Name,
+		int WorkHours,
+		bool InProbation,
+		List<Course>? Courses = null);
+	public record class Course(
+		string Name,
+		int CreditHours,
+		bool IsOptional);
 	internal class Program
 	{
 		static void Main(string[] args)
@@ -60,18 +75,46 @@ namespace C_Sharp_Record
 			//Console.WriteLine(rPoint2);
 			//Console.WriteLine(rPoint3); 
 			#endregion
-			var options = new JsonSerializerOptions
+
+			#region coverting json text to c# code
+			//var options = new JsonSerializerOptions
+			//{
+			//	PropertyNameCaseInsensitive = true,
+			//	ReadCommentHandling= JsonCommentHandling.Skip
+			//};
+			//var stream = File.OpenRead("Attendance.json");
+			//var list = JsonSerializer.Deserialize<List<Attendance>>(stream,options);
+			//         foreach (var item in list)
+			//         {
+			//             Console.WriteLine(item);
+			//         } 
+			#endregion
+
+			#region coverting c# code to json text 
+
+			var stream = File.Create(@"E:\Full Stack Repo\Repo\Different-Topics-for-Full-Stack-Developer\college.json");
+			var utf8JsonWriter = new Utf8JsonWriter(stream);
+
+			JsonSerializer.Serialize(utf8JsonWriter, GetColleges(5, 3, 3), new JsonSerializerOptions
 			{
-				PropertyNameCaseInsensitive = true,
-				ReadCommentHandling= JsonCommentHandling.Skip
-			};
-			var stream = File.OpenRead("Attendance.json");
-			var list = JsonSerializer.Deserialize<List<Attendance>>(stream,options);
-            foreach (var item in list)
-            {
-                Console.WriteLine(item);
-            }
-        }
+				WriteIndented = true,
+			});
+
+
+			#endregion
+		}
+		public static IEnumerable<College> GetColleges(int noOfColleges
+			,int teachersPerCollege, int coursesPerTeacher)
+			{
+				for (var i = 0; i < noOfColleges; i++)
+				{
+					yield return new($"College{i}", 100, true, GetTeachers());
+				}
+				List<Teacher>? GetTeachers()
+					=> Enumerable.Repeat<Teacher>(new($"John", 8, false, GetCourses()), teachersPerCollege).ToList();
+				List<Course>? GetCourses()
+					=> Enumerable.Repeat<Course>(new($"Course", 4, false), coursesPerTeacher).ToList();
+			}
 	}
 	class Point
 	{
