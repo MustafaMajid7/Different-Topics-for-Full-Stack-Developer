@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using DesignPatterns.Factory;
 
 namespace DesignPatterns
 {
@@ -35,7 +36,7 @@ namespace DesignPatterns
 			//var x = decorator3.getCost();
 			//Console.WriteLine(x);
 
-			Console.WriteLine("do you need coffee? enter yes for OK and otherwise if no");
+			//Console.WriteLine("do you need coffee? enter yes for OK and otherwise if no");
 			//bool.TryParse(Console.ReadLine(), out bool status);
 
 			//Decorator cafe1 ;
@@ -110,8 +111,17 @@ namespace DesignPatterns
 
 			#region Factory
 
-			#endregion
+			Client client1 = new(new ProductFactory());
+			Client client2 = new(new BeverageFactory());
 
-		}
+			client1.MakeOrder(1);
+			//client2.MakeOrder(3);
+
+            Console.WriteLine(client1.ShowMyOrder());
+            Console.WriteLine(client2.ShowMyOrder());
+
+            #endregion
+
+        }
 	}
 }
