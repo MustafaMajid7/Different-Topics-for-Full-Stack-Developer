@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Xml.Linq;
-using DesignPatterns.Factory;
+using DesignPatterns.BuilderFolder;
+//using DesignPatterns.Factory;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DesignPatterns
@@ -9,10 +10,6 @@ namespace DesignPatterns
 	{
 		static void Main(string[] args)
 		{
-
-
-
-
 
 			#region string formatter
 
@@ -95,7 +92,7 @@ namespace DesignPatterns
 
 
 			#endregion
-			
+
 			#region inheriting Collections
 
 			//additions decorators = new additions();
@@ -107,7 +104,7 @@ namespace DesignPatterns
 			//decorators.printAllAdditions();
 
 			#endregion
-			
+
 			#region Null forgiving operator
 
 			//double? x = null;
@@ -115,7 +112,7 @@ namespace DesignPatterns
 
 			//Console.WriteLine(z); 
 			#endregion
-			
+
 			#region Factory
 
 			//Client client1 = new(new ProductFactory());
@@ -128,7 +125,7 @@ namespace DesignPatterns
 			//Console.WriteLine(client2.ShowMyOrder());
 
 			#endregion
-			
+
 			#region TimeSpan
 
 			//DateTime launchDate = new DateTime(2023, 11, 15, 9, 0, 0);
@@ -218,10 +215,39 @@ namespace DesignPatterns
 			//	Console.WriteLine(item);
 			//}
 
+			//int[] arr = { 9, 10 };
+
+			//string condition = int.Parse(Console.ReadLine()) switch
+			//{
+			//	//10 or 9 => "sobre",
+			//	//var x when x >8 => "sobre",
+			//	//var x when x.In(arr) => "sobre",
+			//	>=9 => "sobre",
+			//	8 or 7 => "notable",
+			//	6 => "Bien",
+			//	5 => "aprobado",
+			//	_ => "suspenso",
+			//};
+			//         Console.WriteLine(condition);
 
 
 			#endregion
 
-		}
+			#region Builder
+
+			var car = new Car();
+
+			car.ChooseEngine(Vechicles.Car);
+			car.ChooseWheels(Vechicles.Bus);
+			car.ChooseLights(Vechicles.Car);
+
+            Console.WriteLine(car.Engine.printMe());
+            Console.WriteLine(car.Light.printMe());
+            Console.WriteLine(car.Wheels.printMe());
+
+            #endregion
+
+        }
+
 	}
 }
