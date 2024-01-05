@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Text;
 using System.Xml.Linq;
 using DesignPatterns.BuilderFolder;
 //using DesignPatterns.Factory;
@@ -235,19 +236,47 @@ namespace DesignPatterns
 
 			#region Builder
 
-			var car = new Car();
+			//var car = new Car();
 
-			car.ChooseEngine(Vechicles.Car);
-			car.ChooseWheels(Vechicles.Bus);
-			car.ChooseLights(Vechicles.Car);
+			//car.ChooseEngine(Vechicles.Car);
+			//car.ChooseWheels(Vechicles.Bus);
+			//car.ChooseLights(Vechicles.Car);
 
-            Console.WriteLine(car.Engine.printMe());
-            Console.WriteLine(car.Light.printMe());
-            Console.WriteLine(car.Wheels.printMe());
+			//         Console.WriteLine(car.Engine.printMe());
+			//         Console.WriteLine(car.Light.printMe());
+			//         Console.WriteLine(car.Wheels.printMe());
 
-            #endregion
+			#endregion
 
-        }
+			#region Command
 
+			//HashSet<string> set = new HashSet<string>
+			//{
+			//	"a",
+			//	"b",
+			//	"c",
+			//	"d"
+			//};
+
+			//List<string> strings = new List<string>(set);
+
+			//         foreach (var item in set)
+			//         {
+			//             Console.WriteLine(item);
+			//         }
+			//SortedSet<string> strings1 = new SortedSet<string>(strings);
+
+			//Console.WriteLine((int)DateTime.UtcNow.DayOfWeek+1);
+			//Console.WriteLine(DateTime.UtcNow.Hour);
+			#endregion
+
+			#region string Builder
+			//StringBuilder stringBuilder = new StringBuilder();
+			//stringBuilder.Append("mostafa,");
+
+			//         Console.WriteLine(stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString()); 
+			#endregion
+
+		}
 	}
 }
