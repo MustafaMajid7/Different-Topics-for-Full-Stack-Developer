@@ -2,8 +2,11 @@
 using System.Text;
 using System.Xml.Linq;
 using DesignPatterns.BuilderFolder;
+using DesignPatterns.Interpreter;
 //using DesignPatterns.Factory;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using DesignPatterns.MediatorDP;
+using DesignPatterns.CommandDP;
 
 namespace DesignPatterns
 {
@@ -276,6 +279,81 @@ namespace DesignPatterns
 
 			//         Console.WriteLine(stringBuilder.Remove(stringBuilder.Length - 1, 1).ToString()); 
 			#endregion
+
+			#region Interpreter DP
+
+			//DateTime_UD dateTime_UD = new();
+
+			//string str = "YYYY DD MM";
+
+			//Console.WriteLine(dateTime_UD.Pattern.ToString());
+
+			//dateTime_UD.DateTime = DateTime.Now;
+
+			//         foreach (var item in str.Split(" "))
+			//         {
+			//             if (item == "YYYY")
+			//             {
+			//		dateTime_UD.setSegment(new YearSegment());
+			//             }
+			//	if (item == "MM")
+			//	{
+			//		dateTime_UD.setSegment(new MonthSegment());
+			//	}
+			//	if (item == "DD")
+			//	{
+			//		dateTime_UD.setSegment(new DaySegment());
+			//	}
+			//}
+
+			//Console.WriteLine(dateTime_UD.Pattern.ToString());
+
+			#endregion
+
+			#region Mediator DP
+
+			//Mediator mediator = new ();
+
+			//DesignPatterns.MediatorDP.Client client = new("Mostafa");
+			//DesignPatterns.MediatorDP.CompanyTeam team = new("Dev");
+
+			//mediator.Team = team;
+			////mediator.Client = client;
+
+			//client.Mediator = mediator;
+			//team.Mediator = mediator;
+
+			//client.SendMessage("good morning");
+			//client.SendMessage("good afternoon");
+			//team.SendMessage("hello friend");
+
+			#endregion
+
+			#region Command DP
+
+			Calculator calculator = new();
+
+			calculator.Number = 1;
+			calculator.multiply(8);
+			calculator.subtract(4);
+			calculator.add(5);
+			calculator.divide(3);
+
+			Console.WriteLine(calculator.Number);
+			calculator.ShowHistory();
+
+            Console.WriteLine("--------------------------------------------------------------------");
+            
+			calculator.Undo();
+			calculator.Undo();
+
+			Console.WriteLine(calculator.Number);
+			calculator.ShowHistory();
+
+			Console.ReadLine();
+
+			#endregion
+
 
 		}
 	}
